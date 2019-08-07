@@ -1,2 +1,2 @@
 # t-3-k
-t3k original
+T3K original logo with particles created with P5.js libraries. 
