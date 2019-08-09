@@ -1,11 +1,11 @@
 function Particle(x, y) {
-    this.pos = createVector(random(width) * random(-2,2), random(height) * random(-2,2));
+    this.pos = createVector(random(width) * random(-2,3), random(height) * random(-2,3));
     this.target = createVector(x, y);
     this.vel = p5.Vector.random2D(238);//createVector();
     this.acc = createVector();
     this.r = 8;
-    this.maxspeed = 10;
-    this.maxforce = 1;
+    this.maxspeed = 8;
+    this.maxforce = 0.8;
 }
 
 Particle.prototype.behave = function() {
@@ -13,8 +13,8 @@ Particle.prototype.behave = function() {
     let mouse = createVector(mouseX, mouseY);
     let flee = this.flee(mouse);
 
-    arrive.mult(1);
-    flee.mult(8);
+    arrive.mult(2.2);
+    flee.mult(15);
 
     this.applyForce(arrive);
     this.applyForce(flee);
@@ -52,7 +52,7 @@ Particle.prototype.arrive = function(target) {
 Particle.prototype.flee = function(target) {
     let desired = p5.Vector.sub(target, this.pos);
     let d  = desired.mag();
-    if (d < 50) {
+    if (d < 70) {
         desired.setMag(this.maxspeed);
         desired.mult(-1);
         let steer = p5.Vector.sub(desired, this.vel);
